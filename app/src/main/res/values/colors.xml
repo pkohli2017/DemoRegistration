@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!--primary color-->
+    <color name="white">#FFFFFF</color>
+
+
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="primary_light">#C8E6C9</color>
+    <color name="colorAccent">#E040FB</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!--button backgrounds-->
+    <color name="button_focused">#FF4081</color>
+    <color name="button_pressed">#C51162</color>
+    <color name="menu_items_selected">#FAFAFA</color>
+    <color name="edit_text_bg">#C51162</color>
+
+    <color name="text_color_pink">#880e4f</color>
+    <color name="text_color_blue">#0d47a1</color>
+
+
+    <!--colors for refresh list view-->
+    <string-array name="refresh_list_bg">
+        <item>#24c6d5</item>
+        <item>#57dd86</item>
+        <item>#ad7dcf</item>
+        <item>#ff484d</item>
+        <item>#fcba59</item>
+        <item>#24c6d5</item>
+    </string-array>
 </resources>
