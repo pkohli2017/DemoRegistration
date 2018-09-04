@@ -3,14 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <WebView
+        android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:padding="@dimen/spacing_medium"
-        android:text="terms and conditions"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_large_xxxx"
-        android:textStyle="bold" />
+        android:padding="@dimen/spacing_medium" />
 </LinearLayout>

@@ -16,4 +16,8 @@
     <!--Generic strings-->
     <string name="loading">Loading</string>
 
+
+    <!--Options Menu-->
+    <string name="next">Next</string>
+
 </resources>

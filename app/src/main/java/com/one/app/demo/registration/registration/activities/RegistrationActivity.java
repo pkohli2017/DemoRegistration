@@ -22,6 +22,6 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
     public void showTermsAndConditionsFragment() {
         TermsAndConditionsFragment fragment = TermsAndConditionsFragment.newInstance();
         initActionBar(R.string.fragment_tnc_title, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, TermsAndConditionsFragment.FRAGMENT_TAG, true, false);
+        showFragment(R.id.main_content_view, fragment, TermsAndConditionsFragment.FRAGMENT_TAG, false, false);
     }
 }
