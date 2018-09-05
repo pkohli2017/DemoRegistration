@@ -7,23 +7,23 @@
 
     <!-- Fragment names -->
     <string name="fragment_tnc_title">Terms And Conditions</string>
+    <string name="fragment_create_passcode_title">Create Passcode</string>
 
     <!--Splash Screen-->
     <string name="splash_text">@string/app_name</string>
 
     <!--Generic strings-->
     <string name="loading">Loading</string>
+
+    <!-- Create Passcode Screen -->
     <string name="create_passcode_guide_text">Please choose a 6 digit passcode. It needs to be a number you can remember, but others wouldn\'t guess</string>
     <string name="tip_text">Tip</string>
-    <string name="tips_text">Not repeated or sequential numbers</string>
+    <string name="tip_description_text">Not repeated or sequential numbers</string>
     <string name="enter_passcode_hint_text">Enter passcode</string>
     <string name="re_enter_passcode_hint_text">Re-enter passcode</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--Options Menu-->
-    <string name="next">Next</string>
+    <string name="passcode_validation_message_text">Passcode should not be empty.</string>
+    <string name="re_enter_passcode_validation_message_text">Re-enter passcode field should not be empty.</string>
+    <string name="re_enter_passcode_toast">Passcode and Re enter passcode should be same.</string>
 
     <!--Document Upload fragment -->
     <string name="fragment_document_upload_title">Document Upload</string>
@@ -34,4 +34,9 @@
     <string name="photo">Photo</string>
     <string name="continue_btn">Continue</string>
     <string name="select_image">Select Image</string>
+    <string name="next_button_click_toast">Next Button Clicked!</string>
+
+    <!--Options Menu-->
+    <string name="next">Next</string>
+
 </resources>

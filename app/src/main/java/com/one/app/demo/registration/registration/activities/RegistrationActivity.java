@@ -6,6 +6,7 @@ import com.one.app.demo.registration.R;
 import com.one.app.demo.registration.base.activities.BaseActivity;
 import com.one.app.demo.registration.registration.fragments.DocumentUploadFragment;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
+import com.one.app.demo.registration.registration.fragments.CreatePasscodeFragment;
 import com.one.app.demo.registration.registration.fragments.TermsAndConditionsFragment;
 
 public class RegistrationActivity extends BaseActivity implements RegistrationController,
@@ -31,5 +32,12 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
         DocumentUploadFragment fragment = DocumentUploadFragment.newInstance();
         initActionBar(R.string.fragment_document_upload_title, INVALID_HOME_ICON, false);
         showFragment(R.id.main_content_view, fragment, DocumentUploadFragment.FRAGMENT_TAG, true, false);
+    }
+
+    @Override
+    public void showCreatePasscodeFragment() {
+        CreatePasscodeFragment fragment = CreatePasscodeFragment.newInstance();
+        initActionBar(R.string.fragment_create_passcode_title, INVALID_HOME_ICON, false);
+        showFragment(R.id.main_content_view, fragment, CreatePasscodeFragment.FRAGMENT_TAG, false, false);
     }
 }

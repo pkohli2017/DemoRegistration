@@ -59,4 +59,8 @@
     <dimen name="btn_corner_radius_medium">15dp</dimen>
     <dimen name="btn_corner_radius_medium_x">20dp</dimen>
     <dimen name="btn_corner_radius_large">25dp</dimen>
+
+    <!--passcode length -->
+    <dimen name="passcode_length">6</dimen>
+
 </resources>
