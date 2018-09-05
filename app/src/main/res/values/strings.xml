@@ -13,6 +13,14 @@
 
     <!--Generic strings-->
     <string name="loading">Loading</string>
+    <string name="create_passcode_guide_text">Please choose a 6 digit passcode. It needs to be a number you can remember, but others wouldn\'t guess</string>
+    <string name="tip_text">Tip</string>
+    <string name="tips_text">Not repeated or sequential numbers</string>
+    <string name="enter_passcode_hint_text">Enter passcode</string>
+    <string name="re_enter_passcode_hint_text">Re-enter passcode</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Options Menu-->
     <string name="next">Next</string>

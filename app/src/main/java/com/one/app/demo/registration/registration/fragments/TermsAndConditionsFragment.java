@@ -105,5 +105,4 @@ public class TermsAndConditionsFragment extends Fragment implements
     public interface TermsAndConditionsFragmentView {
 
     }
-
 }
