@@ -4,6 +4,7 @@
 
     <!-- Activity names -->
     <string name="activity_splash_screen">Splash Screen Activity</string>
+    <string name="activity_login">Login Screen Activity</string>
 
     <!-- Fragment names -->
     <string name="fragment_tnc_title">Terms And Conditions</string>
@@ -36,7 +37,14 @@
     <string name="select_image">Select Image</string>
     <string name="next_button_click_toast">Next Button Clicked!</string>
 
+    <!--Login-->
+    <string name="login_hint">Enter your X digit passcode</string>
+    <string name="btn_sign_in_caption">SIGN IN</string>
+    <string name="loginError">Please enter passcode again!</string>
+    <string name="passcode_empty_error">Please enter Passcode</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="login_successful">You have made successful Login</string>
+
     <!--Options Menu-->
     <string name="next">Next</string>
-
 </resources>
