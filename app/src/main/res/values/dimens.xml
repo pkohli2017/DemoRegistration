@@ -20,7 +20,27 @@
     <dimen name="progress_bar_width">50dp</dimen>
 
 
-    <!--tex size -->
+    <!-- padding and margins -->
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_medium">10dp</dimen>
+    <dimen name="margin_medium_x">12dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">20dp</dimen>
+    <dimen name="margin_large_x">24dp</dimen>
+    <dimen name="margin_large_xx">28dp</dimen>
+    <dimen name="margin_large_xxx">32dp</dimen>
+    <dimen name="margin_large_xxxx">36dp</dimen>
+    <dimen name="margin_large_xxxxx">70dp</dimen>
+
+    <!--btn size -->
+    <dimen name="btn_small">20dp</dimen>
+    <dimen name="btn_small_x">30dp</dimen>
+    <dimen name="btn_medium">60dp</dimen>
+    <dimen name="btn_medium_x">90dp</dimen>
+
+
+    <!--text size -->
+    <dimen name="zero_width">0dp</dimen>
     <dimen name="text_small">5dp</dimen>
     <dimen name="text_medium">8dp</dimen>
     <dimen name="text_medium_x">10dp</dimen>
@@ -31,7 +51,12 @@
     <dimen name="text_large_xx">24dp</dimen>
     <dimen name="text_large_xxx">28dp</dimen>
     <dimen name="text_large_xxxx">32dp</dimen>
-
-    <dimen name="zero_width">0dp</dimen>
     <dimen name="separator">1dp</dimen>
+
+    <!--Button corner radius size -->
+    <dimen name="btn_corner_radius_small">5dp</dimen>
+    <dimen name="btn_corner_radius_small_x">10dp</dimen>
+    <dimen name="btn_corner_radius_medium">15dp</dimen>
+    <dimen name="btn_corner_radius_medium_x">20dp</dimen>
+    <dimen name="btn_corner_radius_large">25dp</dimen>
 </resources>

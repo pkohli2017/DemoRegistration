@@ -24,6 +24,17 @@
     <color name="text_color_blue">#0d47a1</color>
 
 
+    <color name="button_primary_color_default">#C51162</color>
+    <color name="button_primary_color_pressed">#880e4f</color>
+
+    <color name="button_continue_color_default">#4CAF50</color>
+    <color name="button_continue_color_pressed">#388E3C</color>
+
+
+    <color name="btn_color_light_blue">#517B96</color>
+    <color name="btn_color_light_red">#ff484d</color>
+
+
     <!--colors for refresh list view-->
     <string-array name="refresh_list_bg">
         <item>#24c6d5</item>
@@ -33,4 +44,5 @@
         <item>#fcba59</item>
         <item>#24c6d5</item>
     </string-array>
+
 </resources>
