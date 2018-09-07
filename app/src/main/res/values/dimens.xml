@@ -38,6 +38,11 @@
     <dimen name="btn_small_x">30dp</dimen>
     <dimen name="btn_medium">60dp</dimen>
     <dimen name="btn_medium_x">90dp</dimen>
+    <!--btn radius -->
+    <dimen name="btn_radius_small">5dp</dimen>
+    <dimen name="btn_radius_medium">10dp</dimen>
+    <dimen name="btn_radius_large">15dp</dimen>
+    <dimen name="btn_radius_large_x">20dp</dimen>
 
     <!--text size -->
     <dimen name="zero_width">0dp</dimen>

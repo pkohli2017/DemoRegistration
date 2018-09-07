@@ -1,7 +1,5 @@
 package com.one.app.demo.registration.registration.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -13,15 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.one.app.demo.registration.R;
+import com.one.app.demo.registration.base.activities.BaseActivity;
+import com.one.app.demo.registration.base.fragments.BaseFragment;
+import com.one.app.demo.registration.registration.activities.RegistrationActivity;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
-import com.one.app.demo.registration.registration.util.AppUtil;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +26,7 @@ import org.w3c.dom.Text;
  * Use the {@link CreatePasscodeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreatePasscodeFragment extends Fragment implements
+public class CreatePasscodeFragment extends BaseFragment implements
         CreatePasscodeFragmentPresenter.CreatePasscodeFragmentPresenterView {
 
     public static final String FRAGMENT_TAG = CreatePasscodeFragment.class.getSimpleName();
@@ -68,7 +63,7 @@ public class CreatePasscodeFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
-        mController = getController();
+        mController = (RegistrationActivity) getController();
         mCreatePasscodeFragmentPresenter = CreatePasscodeFragmentPresenter.newInstance(this, mController);
         mCreatePasscodeFragmentPresenter.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -78,6 +73,7 @@ public class CreatePasscodeFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_passcode, container, false);
+        mController.initActionBar(R.string.fragment_create_passcode_title, BaseActivity.INVALID_HOME_ICON, false);
         initViews(view);
         return view;
     }
@@ -87,13 +83,9 @@ public class CreatePasscodeFragment extends Fragment implements
         mTextInputEditTextReEnterPasscode = (TextInputEditText) view.findViewById(R.id.textInputEditTextReEnterPasscode);
     }
 
-    private RegistrationController getController() {
-        return (RegistrationController) getActivity();
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
         mNextButton = menu.findItem(R.id.next);
         mNextButton.setEnabled(true);
     }
@@ -101,30 +93,40 @@ public class CreatePasscodeFragment extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.next) {
-            showValidationMessage();
-            return true;
-        } else return super.onOptionsItemSelected(item);
-    }
-
-    private void showValidationMessage() {
-        String newPassword = mTextInputEditTextPasscode.getText().toString();
-        String confirmPassword = mTextInputEditTextReEnterPasscode.getText().toString();
-        if (TextUtils.isEmpty(newPassword) && TextUtils.isEmpty(confirmPassword)) {
-            showPasscodeErrorMessage();
-            showReEnterPasscodeErrorMessage();
-        } else if (TextUtils.isEmpty(newPassword)) {
-            showPasscodeErrorMessage();
-        } else if (TextUtils.isEmpty(confirmPassword)) {
-            showReEnterPasscodeErrorMessage();
-        } else if (!TextUtils.isEmpty(newPassword) && !TextUtils.isEmpty(confirmPassword)) {
-            if (isReEnterPasscodeSame()) {
-                mTextInputEditTextReEnterPasscode.setError(getString(R.string.re_enter_passcode_toast));
+            boolean isPasswordValid = isPasswordValid();
+            if (isPasswordValid) {
+                mController.showDocumentUploadFragment();
             }
         }
+        return true;
     }
 
-    private boolean isReEnterPasscodeSame() {
-        return !mTextInputEditTextPasscode.getText().toString().equals(mTextInputEditTextReEnterPasscode.getText().toString());
+    private boolean isPasswordValid() {
+        String newPassword = mTextInputEditTextPasscode.getText().toString();
+        String confirmPassword = mTextInputEditTextReEnterPasscode.getText().toString();
+        boolean isNewPasswordEmpty = TextUtils.isEmpty(newPassword);
+        boolean isConfirmPasswordEmpty = TextUtils.isEmpty(confirmPassword);
+        if (isNewPasswordEmpty && isConfirmPasswordEmpty) {
+            showPasscodeErrorMessage();
+            showReEnterPasscodeErrorMessage();
+            return false;
+        } else if (isNewPasswordEmpty) {
+            showPasscodeErrorMessage();
+            return false;
+        } else if (isConfirmPasswordEmpty) {
+            showReEnterPasscodeErrorMessage();
+            return false;
+        } else if (!isNewPasswordEmpty && !isConfirmPasswordEmpty) {
+            if (!isReEnterPasscodeSame(newPassword, confirmPassword)) {
+                mTextInputEditTextReEnterPasscode.setError(getString(R.string.re_enter_passcode_toast));
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isReEnterPasscodeSame(String newPassword, String reEnterPassword) {
+        return newPassword.equals(reEnterPassword);
     }
 
     private void showReEnterPasscodeErrorMessage() {
@@ -134,7 +136,6 @@ public class CreatePasscodeFragment extends Fragment implements
     private void showPasscodeErrorMessage() {
         mTextInputEditTextPasscode.setError(getString(R.string.passcode_validation_message_text));
     }
-
 
     /**
      * This interface must be implemented by activities that contain this

@@ -3,7 +3,6 @@ package com.one.app.demo.registration.registration.fragments;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.one.app.demo.registration.R;
+import com.one.app.demo.registration.base.activities.BaseActivity;
+import com.one.app.demo.registration.base.fragments.BaseFragment;
+import com.one.app.demo.registration.registration.activities.RegistrationActivity;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 
 import java.text.ParseException;
@@ -30,22 +32,22 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class PersonalDetailsFragment extends Fragment implements
+public class PersonalDetailsFragment extends BaseFragment implements
         PersonalDetailsFragmentPresenter.PersonalDetailsFragmentPresenterView, View.OnFocusChangeListener {
 
     public static final String FRAGMENT_TAG = PersonalDetailsFragment.class.getSimpleName();
+    private final String myFormat = "MM/dd/yy";
+    private final String mRegexStr = ".*\\d+.*";
+    private final String mRegexName = "[a-zA-Z]+";
     private FragmentActivity mActivity;
     private PersonalDetailsFragmentView mPersonalDetailsFragmentView;
     private PersonalDetailsFragmentPresenter mPersonalDetailsFragmentPresenter;
-
     private Spinner mTitle;
     private EditText mDateOfBirth, mFirstName, mMiddleName, mSurname, mNationality;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener mOnDateSetListener;
     private MenuItem mNextButton;
-    private final String myFormat = "MM/dd/yy";
-    private final String mRegexStr = ".*\\d+.*";
-    private final String mRegexName = "[a-zA-Z]+";
+    private RegistrationController mController;
 
     public PersonalDetailsFragment() {
         // Required empty public constructor
@@ -65,13 +67,10 @@ public class PersonalDetailsFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
-        mPersonalDetailsFragmentPresenter = PersonalDetailsFragmentPresenter.newInstance(this, getController());
+        mController = (RegistrationActivity) getController();
+        mPersonalDetailsFragmentPresenter = PersonalDetailsFragmentPresenter.newInstance(this, mController);
         mPersonalDetailsFragmentPresenter.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-    }
-
-    private RegistrationController getController() {
-        return (RegistrationController) getActivity();
     }
 
     @Override
@@ -79,6 +78,7 @@ public class PersonalDetailsFragment extends Fragment implements
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal_details, container, false);
         mPersonalDetailsFragmentPresenter.onCreateView(inflater, container, savedInstanceState);
+        mController.initActionBar(R.string.fragment_personal_detail_title, BaseActivity.INVALID_HOME_ICON, false);
         initializeViews(view);
         setTitleSpinner(view);
         setListeners();
@@ -156,7 +156,6 @@ public class PersonalDetailsFragment extends Fragment implements
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_menu, menu);
         mNextButton = menu.findItem(R.id.next);
         mNextButton.setEnabled(true);
     }
@@ -167,14 +166,13 @@ public class PersonalDetailsFragment extends Fragment implements
             if (mNextButton.isEnabled()) {
                 try {
                     if (doValidation())
-                        getController().showTermsAndConditionsFragment();
+                        mController.showDeclarationFragment();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                return super.onOptionsItemSelected(item);
             }
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private boolean doValidation() throws ParseException {

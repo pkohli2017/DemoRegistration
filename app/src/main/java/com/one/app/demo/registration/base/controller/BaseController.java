@@ -8,4 +8,6 @@ public interface BaseController {
     void hideActionBar();
 
     void showActionBar();
+
+    void initActionBar(int titleResId, int homeIcon, boolean displayHomeIcon);
 }

@@ -2,7 +2,6 @@ package com.one.app.demo.registration.registration.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,10 +12,13 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.one.app.demo.registration.R;
+import com.one.app.demo.registration.base.activities.BaseActivity;
+import com.one.app.demo.registration.base.fragments.BaseFragment;
+import com.one.app.demo.registration.registration.activities.RegistrationActivity;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 
 @SuppressLint("NewApi")
-public class TermsAndConditionsFragment extends Fragment implements
+public class TermsAndConditionsFragment extends BaseFragment implements
         TermsAndConditionsFragmentPresenter.TermsAndConditionsFragmentPresenterView, View.OnScrollChangeListener {
 
     public static final String FRAGMENT_TAG = TermsAndConditionsFragment.class.getSimpleName();
@@ -25,6 +27,7 @@ public class TermsAndConditionsFragment extends Fragment implements
     private TermsAndConditionsFragmentPresenter mTermsAndConditionsFragmentPresenter;
     private WebView mWebView;
     private MenuItem mNextButton;
+    private RegistrationController mController;
 
     /**
      * Use this factory method to create a new instance of
@@ -49,25 +52,26 @@ public class TermsAndConditionsFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
-        mTermsAndConditionsFragmentPresenter = TermsAndConditionsFragmentPresenter.newInstance(this, getController());
+        mController = (RegistrationActivity) getController();
+        mTermsAndConditionsFragmentPresenter = TermsAndConditionsFragmentPresenter.newInstance(this, mController);
         mTermsAndConditionsFragmentPresenter.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
-    private RegistrationController getController() {
-        return (RegistrationController) getActivity();
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
         mNextButton = menu.findItem(R.id.next);
         mNextButton.setEnabled(false);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.next) {
+            mController.showCreatePasscodeFragment();
+        }
+        return true;
     }
 
     @Override
@@ -78,6 +82,7 @@ public class TermsAndConditionsFragment extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_terms_and_conditions, container, false);
         mWebView = view.findViewById(R.id.web_view);
         mTermsAndConditionsFragmentPresenter.onCreateView(inflater, container, savedInstanceState);
+        mController.initActionBar(R.string.fragment_tnc_title, BaseActivity.INVALID_HOME_ICON, false);
         setListeners();
         loadTnC();
         return view;

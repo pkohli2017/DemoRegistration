@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -47,6 +46,7 @@ public class BaseActivity extends AppCompatActivity implements BaseController {
         layout.addView(contentView);
     }
 
+    @Override
     public void initActionBar(int titleResId, int homeIcon, boolean displayHomeIcon) {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -95,17 +95,12 @@ public class BaseActivity extends AppCompatActivity implements BaseController {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        switch (itemId) {
-            case android.R.id.home: {
-            }
+        int fragmentCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (fragmentCount > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
         }
-        return true;
     }
 
     @Override

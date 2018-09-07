@@ -14,6 +14,13 @@ import com.one.app.demo.registration.base.controller.BaseController;
  */
 public abstract class FragmentPresenter {
 
+    /**
+     * @param view       view
+     * @param controller controller
+     */
+
+    private FragmentPresenterView mFragmentPresenterView;
+
     protected abstract void onAttach(Activity activity);
 
     protected abstract void onCreate(
@@ -50,6 +57,11 @@ public abstract class FragmentPresenter {
 
     public void hideActionBar(BaseController controller) {
         controller.hideActionBar();
+    }
+
+
+    interface FragmentPresenterView {
+
     }
 
 }

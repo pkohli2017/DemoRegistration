@@ -11,6 +11,8 @@
     <string name="fragment_create_passcode_title">Create Passcode</string>
     <string name="fragment_your_address_title">Your Address</string>
     <string name="fragment_declaration">Declaration</string>
+    <string name="fragment_document_upload_title">Document Upload</string>
+    <string name="fragment_personal_detail_title">Personal Details</string>
 
     <!--Splash Screen-->
     <string name="splash_text">@string/app_name</string>
@@ -29,7 +31,6 @@
     <string name="re_enter_passcode_toast">Passcode and Re enter passcode should be same.</string>
 
     <!--Document Upload fragment -->
-    <string name="fragment_document_upload_title">Document Upload</string>
     <string name="documet_title">Kindly select the documents and upload to serve better in the registration process</string>
     <string name="adhaar">Adhaar Card</string>
     <string name="passport">Passport</string>
@@ -67,9 +68,11 @@
     <string name="checkbox_understand_text">I understand how the Barclay guidelines protect my account.</string>
     <string name="checkbox_accepted_text">I have read the accepted the app term and condition and the declaration.</string>
     <string name="checkbox_agree_text">I agree to all term and condition and the declaration.</string>
-    <string name="declaration_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the best standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-</string>
+    <string name="declaration_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+        has been the best standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+        it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
     <!--Options Menu-->
     <string name="next">Next</string>
@@ -77,7 +80,6 @@
 
 
     <!--Personal Details-->
-    <string name="fragment_personal_detail_title">Personal Details</string>
     <string name="tell_details">Please enter your details:</string>
     <string name="first_name">First Name *</string>
     <string name="middle_name">Middle Name</string>

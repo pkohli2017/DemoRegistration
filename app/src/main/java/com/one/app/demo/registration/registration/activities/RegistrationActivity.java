@@ -26,23 +26,23 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
 
     @Override
     public void showDeclarationFragment() {
-        DeclarationFragment fragment = DeclarationFragment.newInstance();
+        DeclarationFragment fragment = DeclarationFragment.newInstance(this);
         initActionBar(R.string.fragment_declaration, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, DeclarationFragment.FRAGMENT_TAG, false, false);
+        showFragment(R.id.main_content_view, fragment, DeclarationFragment.FRAGMENT_TAG, true, true);
     }
 
     @Override
     public void showTermsAndConditionsFragment() {
         TermsAndConditionsFragment fragment = TermsAndConditionsFragment.newInstance();
         initActionBar(R.string.fragment_tnc_title, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, TermsAndConditionsFragment.FRAGMENT_TAG, false, false);
+        showFragment(R.id.main_content_view, fragment, TermsAndConditionsFragment.FRAGMENT_TAG, false, true);
     }
 
     @Override
     public void showPersonalDetailsFragment() {
         PersonalDetailsFragment fragment = PersonalDetailsFragment.newInstance();
         initActionBar(R.string.fragment_personal_detail_title, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, PersonalDetailsFragment.FRAGMENT_TAG, false, false);
+        showFragment(R.id.main_content_view, fragment, PersonalDetailsFragment.FRAGMENT_TAG, true, true);
     }
 
     @Override
@@ -56,14 +56,14 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
     public void showDocumentUploadFragment() {
         DocumentUploadFragment fragment = DocumentUploadFragment.newInstance();
         initActionBar(R.string.fragment_document_upload_title, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, DocumentUploadFragment.FRAGMENT_TAG, true, false);
+        showFragment(R.id.main_content_view, fragment, DocumentUploadFragment.FRAGMENT_TAG, true, true);
     }
 
     @Override
     public void showCreatePasscodeFragment() {
         CreatePasscodeFragment fragment = CreatePasscodeFragment.newInstance();
         initActionBar(R.string.fragment_create_passcode_title, INVALID_HOME_ICON, false);
-        showFragment(R.id.main_content_view, fragment, CreatePasscodeFragment.FRAGMENT_TAG, false, false);
+        showFragment(R.id.main_content_view, fragment, CreatePasscodeFragment.FRAGMENT_TAG, true, true);
     }
 
     @Override

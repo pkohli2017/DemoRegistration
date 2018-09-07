@@ -3,84 +3,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     android:padding="@dimen/spacing_large">
-    <TextView
-        android:id="@+id/doc_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/spacing_large"
-        android:gravity="center"
-        android:text="@string/documet_title"
-        android:textColor="@color/primary_text"
-        android:textSize="@dimen/fab_margin"
-        android:textStyle="bold" />
-    <Button
-        android:id="@+id/continue_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/spacing_large"
-        android:layout_marginRight="@dimen/spacing_large"
-        android:background="@drawable/button_continue_rounded_corners"
-        android:padding="@dimen/spacing_large"
-        android:text="@string/continue_btn"
-        android:textColor="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/zero_width"
-        android:layout_above="@id/continue_btn"
-        android:layout_below="@id/doc_title"
-        android:layout_margin="@dimen/text_normal"
-        android:layout_weight="1"
-        android:gravity="center"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/doc_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/upload_adhaar_card"
-                android:layout_width="@dimen/zero_width"
-                android:layout_height="@dimen/btn_medium_x"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:padding="@dimen/spacing_large"
-                android:text="@string/adhaar" />
-            <Button
-                android:id="@+id/upload_passport"
-                android:layout_width="@dimen/zero_width"
-                android:layout_height="@dimen/btn_medium_x"
-                android:layout_marginLeft="@dimen/spacing_medium"
-                android:layout_weight="1"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:padding="@dimen/spacing_large"
-                android:text="@string/passport" />
-        </LinearLayout>
+            android:gravity="center"
+            android:text="@string/documet_title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/fab_margin" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/upload_pan_card"
-                android:layout_width="@dimen/zero_width"
-                android:layout_height="@dimen/btn_medium_x"
+            android:layout_height="@dimen/zero_width"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:padding="@dimen/spacing_large"
-                android:text="@string/pan" />
-            <Button
-                android:id="@+id/upload_photo"
-                android:layout_width="@dimen/zero_width"
-                android:layout_height="@dimen/btn_medium_x"
-                android:layout_marginLeft="@dimen/spacing_medium"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/upload_adhaar_card"
+                    android:layout_width="@dimen/zero_width"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:gravity="center"
+                    android:text="@string/adhaar"
+                    android:textColor="@color/text_color_white" />
+
+                <Button
+                    android:id="@+id/upload_passport"
+                    android:layout_width="@dimen/zero_width"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:gravity="center"
+                    android:text="@string/passport"
+                    android:textColor="@color/text_color_white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:layout_weight="1"
-                android:background="@drawable/button_bg_rounded_corners"
-                android:padding="@dimen/spacing_large"
-                android:text="@string/photo" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/upload_pan_card"
+                    android:layout_width="@dimen/zero_width"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:gravity="center"
+                    android:text="@string/pan"
+                    android:textColor="@color/text_color_white" />
+
+                <Button
+                    android:id="@+id/upload_photo"
+                    android:layout_width="@dimen/zero_width"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:gravity="center"
+                    android:text="@string/photo"
+                    android:textColor="@color/text_color_white" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

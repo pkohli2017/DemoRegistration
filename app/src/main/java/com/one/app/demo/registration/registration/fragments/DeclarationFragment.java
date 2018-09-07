@@ -13,6 +13,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.one.app.demo.registration.R;
+import com.one.app.demo.registration.base.activities.BaseActivity;
+import com.one.app.demo.registration.base.fragments.BaseFragment;
+import com.one.app.demo.registration.registration.activities.RegistrationActivity;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 
 /**
@@ -23,7 +26,7 @@ import com.one.app.demo.registration.registration.controller.RegistrationControl
  * Use the {@link DeclarationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DeclarationFragment extends Fragment implements
+public class DeclarationFragment extends BaseFragment implements
         DeclarationFragmentPresenter.DeclarationFragmentPresenterView,
         CompoundButton.OnCheckedChangeListener {
 
@@ -61,7 +64,7 @@ public class DeclarationFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
-        mController = getController();
+        mController = (RegistrationActivity) getController();
         mDeclarationFragmentPresenter = DeclarationFragmentPresenter.newInstance(this, mController);
         mDeclarationFragmentPresenter.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -71,6 +74,7 @@ public class DeclarationFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_declaration, container, false);
+        mController.initActionBar(R.string.fragment_declaration, BaseActivity.INVALID_HOME_ICON, false);
         initViews(view);
         return view;
     }
@@ -84,13 +88,9 @@ public class DeclarationFragment extends Fragment implements
         mCheckBoxAgree.setOnCheckedChangeListener(this);
     }
 
-    private RegistrationController getController() {
-        return (RegistrationController) getActivity();
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
         mNextButton = menu.findItem(R.id.next);
         mFinish = menu.findItem(R.id.finish);
         mFinish.setVisible(true);
@@ -102,8 +102,8 @@ public class DeclarationFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.finish) {
             openLoginActivity();
-            return true;
-        } else return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     private void openLoginActivity() {

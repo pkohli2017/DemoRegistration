@@ -1,45 +1,48 @@
 package com.one.app.demo.registration.registration.fragments;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.one.app.demo.registration.R;
+import com.one.app.demo.registration.base.activities.BaseActivity;
+import com.one.app.demo.registration.base.fragments.BaseFragment;
+import com.one.app.demo.registration.registration.activities.RegistrationActivity;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 
 import java.io.InputStream;
 
 
-public class DocumentUploadFragment extends Fragment implements
+public class DocumentUploadFragment extends BaseFragment implements
         DocumentUploadFragmentPresenter.DocumentUploadFragmentPresenterView, View.OnClickListener {
 
     public static final String FRAGMENT_TAG = DocumentUploadFragment.class.getSimpleName();
-    private FragmentActivity mActivity;
-    private DocumentUploadFragmentPresenter.DocumentUploadFragmentPresenterView mDocumentUploadFragmentPresenterView;
-    private DocumentUploadFragmentPresenter mDocumentUploadFragmentPresenter;
-
-    /*View*/
-   private Button mAdharBtn, mPassportBtn, mPanCardBtn, mPanBtn, mContinueBtn;
-
     /*Request code*/
     private final int REQUEST_CODE_ADHAAR = 101;
     private final int REQUEST_CODE_PASSPORT = 102;
     private final int REQUEST_CODE_PAN = 103;
     private final int REQUEST_CODE_PHOTO = 104;
+    private FragmentActivity mActivity;
+    private RegistrationController mController;
+    private MenuItem mNextButton;
+    private DocumentUploadFragmentPresenter.DocumentUploadFragmentPresenterView mDocumentUploadFragmentPresenterView;
+    private DocumentUploadFragmentPresenter mDocumentUploadFragmentPresenter;
+    /*View*/
+    private Button mAdharBtn, mPassportBtn, mPanCardBtn, mPanBtn;
 
     /**
      * Use this factory method to create a new instance of
@@ -64,12 +67,10 @@ public class DocumentUploadFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = getActivity();
-        mDocumentUploadFragmentPresenter = DocumentUploadFragmentPresenter.newInstance(this, getController());
+        mController = (RegistrationActivity) getController();
+        mDocumentUploadFragmentPresenter = DocumentUploadFragmentPresenter.newInstance(this, mController);
         mDocumentUploadFragmentPresenter.onCreate(savedInstanceState);
-    }
-
-    private RegistrationController getController() {
-        return (RegistrationController) getActivity();
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -79,22 +80,20 @@ public class DocumentUploadFragment extends Fragment implements
          change the layout with the REAL ONE*/
         View view = inflater.inflate(R.layout.fragment_document_upload, container, false);
         mDocumentUploadFragmentPresenter.onCreateView(inflater, container, savedInstanceState);
+        mController.initActionBar(R.string.fragment_document_upload_title, BaseActivity.INVALID_HOME_ICON, false);
         initializeViews(view);
         return view;
     }
 
-    private void initializeViews(View view)
-    {
+    private void initializeViews(View view) {
         mAdharBtn = (Button) view.findViewById(R.id.upload_adhaar_card);
         mPassportBtn = (Button) view.findViewById(R.id.upload_passport);
         mPanCardBtn = (Button) view.findViewById(R.id.upload_pan_card);
         mPanBtn = (Button) view.findViewById(R.id.upload_photo);
-        mContinueBtn = (Button) view.findViewById(R.id.continue_btn);
         mAdharBtn.setOnClickListener(this);
         mPassportBtn.setOnClickListener(this);
         mPanCardBtn.setOnClickListener(this);
         mPanBtn.setOnClickListener(this);
-        mContinueBtn.setOnClickListener(this);
     }
 
     @Override
@@ -112,9 +111,22 @@ public class DocumentUploadFragment extends Fragment implements
             case R.id.upload_photo:
                 fetchImage(REQUEST_CODE_PHOTO);
                 break;
-            case R.id.continue_btn:
-                break;
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        mNextButton = menu.findItem(R.id.next);
+        mNextButton.setEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.next) {
+            mController.showPersonalDetailsFragment();
+        }
+        return true;
     }
 
     public void fetchImage(int requestCode) {
@@ -138,23 +150,10 @@ public class DocumentUploadFragment extends Fragment implements
             } else {
                 Toast toast = Toast.makeText(getActivity(), "No Image is selected.", Toast.LENGTH_LONG);
                 toast.show();
-                }
-        }
-        catch (Exception e) {
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-
-    public interface DocumentUploadFragmentPresenterView {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -163,19 +162,26 @@ public class DocumentUploadFragment extends Fragment implements
             switch (requestCode) {
                 case REQUEST_CODE_ADHAAR:
                     mAdharBtn.setBackground(new BitmapDrawable(getResources(), imageMap));
+                    mAdharBtn.setText(null);
                     break;
                 case REQUEST_CODE_PASSPORT:
                     mPassportBtn.setBackground(new BitmapDrawable(getResources(), imageMap));
+                    mPassportBtn.setText(null);
                     break;
                 case REQUEST_CODE_PAN:
                     mPanCardBtn.setBackground(new BitmapDrawable(getResources(), imageMap));
+                    mPanCardBtn.setText(null);
                     break;
                 case REQUEST_CODE_PHOTO:
                     mPanBtn.setBackground(new BitmapDrawable(getResources(), imageMap));
+                    mPanBtn.setText(null);
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public interface DocumentUploadFragmentPresenterView {
     }
 }
