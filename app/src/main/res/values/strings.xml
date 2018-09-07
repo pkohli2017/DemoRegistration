@@ -9,6 +9,7 @@
     <!-- Fragment names -->
     <string name="fragment_tnc_title">Terms And Conditions</string>
     <string name="fragment_create_passcode_title">Create Passcode</string>
+    <string name="fragment_declaration">Declaration</string>
 
     <!--Splash Screen-->
     <string name="splash_text">@string/app_name</string>
@@ -45,6 +46,18 @@
     <string name="sign_in">SIGN IN</string>
     <string name="login_successful">You have made successful Login</string>
 
+    <!--Declaration-->
+    <string name="declaration_text">Please read declaration below and check you are happy with it.</string>
+    <string name="checkbox_understand_text">I understand how the Barclay guidelines protect my account.</string>
+    <string name="checkbox_accepted_text">I have read the accepted the app term and condition and the declaration.</string>
+    <string name="checkbox_agree_text">I agree to all term and condition and the declaration.</string>
+    <string name="declaration_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the best standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+</string>
+
     <!--Options Menu-->
     <string name="next">Next</string>
+    <string name="finish">Finish</string>
+
+
 </resources>

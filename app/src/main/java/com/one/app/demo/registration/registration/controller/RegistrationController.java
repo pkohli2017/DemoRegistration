@@ -8,4 +8,6 @@ public interface RegistrationController extends BaseController {
     void showDocumentUploadFragment();
 
     void showCreatePasscodeFragment();
+
+    void showDeclarationFragment();
 }
