@@ -60,4 +60,26 @@
     <string name="finish">Finish</string>
 
 
+    <!--Personal Details-->
+    <string name="fragment_personal_detail_title">Personal Details</string>
+    <string name="tell_details">Please enter your details:</string>
+    <string name="first_name">First Name *</string>
+    <string name="middle_name">Middle Name</string>
+    <string name="surname">Surname *</string>
+    <string name="date_of_birth">Date of birth *</string>
+    <string name="nationality">Nationality *</string>
+    <string name="empty_string">Field can not be empty</string>
+    <string name="numeric_string">Numeric values not allowed </string>
+    <string name="date_empty">Date can not be empty</string>
+    <string name="dob_is_greater">DOB can not be greater than current date</string>
+    <string name="personal_detail_title">Title *</string>
+    <string name="select_title">Select Title</string>
+
+
+    <string-array name="title_spinner">
+        <item>Title *</item>
+        <item>Mr</item>
+        <item>Mrs</item>
+        <item>Ms</item>
+    </string-array>
 </resources>

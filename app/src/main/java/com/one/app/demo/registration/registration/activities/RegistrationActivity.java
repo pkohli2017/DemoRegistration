@@ -9,6 +9,7 @@ import com.one.app.demo.registration.registration.fragments.DeclarationFragment;
 import com.one.app.demo.registration.registration.fragments.DocumentUploadFragment;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 import com.one.app.demo.registration.registration.fragments.CreatePasscodeFragment;
+import com.one.app.demo.registration.registration.fragments.PersonalDetailsFragment;
 import com.one.app.demo.registration.registration.fragments.TermsAndConditionsFragment;
 
 public class RegistrationActivity extends BaseActivity implements RegistrationController,
@@ -37,6 +38,12 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
         showFragment(R.id.main_content_view, fragment, TermsAndConditionsFragment.FRAGMENT_TAG, false, false);
     }
 
+    @Override
+    public void showPersonalDetailsFragment() {
+        PersonalDetailsFragment fragment = PersonalDetailsFragment.newInstance();
+        initActionBar(R.string.fragment_personal_detail_title, INVALID_HOME_ICON, false);
+        showFragment(R.id.main_content_view, fragment, PersonalDetailsFragment.FRAGMENT_TAG, false, false);
+    }
 
     @Override
     public void showDocumentUploadFragment() {
@@ -54,7 +61,7 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
 
     @Override
     public void showLoginScreen() {
-        Intent intent =  getIntent(this, LoginActivity.class);
+        Intent intent = getIntent(this, LoginActivity.class);
         startActivityAndFinish(intent);
     }
 }

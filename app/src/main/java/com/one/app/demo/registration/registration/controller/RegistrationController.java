@@ -10,4 +10,6 @@ public interface RegistrationController extends BaseController {
     void showCreatePasscodeFragment();
 
     void showDeclarationFragment();
+
+    void showPersonalDetailsFragment();
 }
