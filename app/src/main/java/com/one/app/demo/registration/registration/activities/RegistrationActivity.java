@@ -5,16 +5,16 @@ import android.os.Bundle;
 
 import com.one.app.demo.registration.R;
 import com.one.app.demo.registration.base.activities.BaseActivity;
-import com.one.app.demo.registration.registration.fragments.DeclarationFragment;
-import com.one.app.demo.registration.registration.fragments.DocumentUploadFragment;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 import com.one.app.demo.registration.registration.fragments.CreatePasscodeFragment;
+import com.one.app.demo.registration.registration.fragments.DeclarationFragment;
+import com.one.app.demo.registration.registration.fragments.DocumentUploadFragment;
 import com.one.app.demo.registration.registration.fragments.PersonalDetailsFragment;
 import com.one.app.demo.registration.registration.fragments.TermsAndConditionsFragment;
+import com.one.app.demo.registration.registration.fragments.YourAddressFragment;
 
 public class RegistrationActivity extends BaseActivity implements RegistrationController,
-        TermsAndConditionsFragment.TermsAndConditionsFragmentView,
-        DocumentUploadFragment.DocumentUploadFragmentPresenterView, DeclarationFragment.DeclarationFragmentView {
+        TermsAndConditionsFragment.TermsAndConditionsFragmentView, DocumentUploadFragment.DocumentUploadFragmentPresenterView, DeclarationFragment.DeclarationFragmentView, YourAddressFragment.YourAddressFragmentView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,13 @@ public class RegistrationActivity extends BaseActivity implements RegistrationCo
         PersonalDetailsFragment fragment = PersonalDetailsFragment.newInstance();
         initActionBar(R.string.fragment_personal_detail_title, INVALID_HOME_ICON, false);
         showFragment(R.id.main_content_view, fragment, PersonalDetailsFragment.FRAGMENT_TAG, false, false);
+    }
+
+    @Override
+    public void showYourAddressFragment() {
+        YourAddressFragment fragment = YourAddressFragment.newInstance();
+        initActionBar(R.string.fragment_your_address_title, INVALID_HOME_ICON, false);
+        showFragment(R.id.main_content_view, fragment, YourAddressFragment.FRAGMENT_TAG, false, false);
     }
 
     @Override

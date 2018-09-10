@@ -9,6 +9,7 @@
     <!-- Fragment names -->
     <string name="fragment_tnc_title">Terms And Conditions</string>
     <string name="fragment_create_passcode_title">Create Passcode</string>
+    <string name="fragment_your_address_title">Your Address</string>
     <string name="fragment_declaration">Declaration</string>
 
     <!--Splash Screen-->
@@ -37,6 +38,21 @@
     <string name="continue_btn">Continue</string>
     <string name="select_image">Select Image</string>
     <string name="next_button_click_toast">Next Button Clicked!</string>
+
+    <!-- Your address Fragment -->
+    <string name="enter_address_text">Please enter your address</string>
+    <string name="address_line1">Address line 1</string>
+    <string name="address_line2">Address line 2</string>
+    <string name="address_line3">Address line 3</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="blank">""</string>
+    <string name="country_error_msg">Country should not be empty</string>
+    <string name="city_error_msg">City should not be empty</string>
+    <string name="state_error_msg">State should not be empty</string>
+    <string name="address_line1_error_msg">address Line 1 should not be empty</string>
 
     <!--Login-->
     <string name="login_hint">Enter your X digit passcode</string>
