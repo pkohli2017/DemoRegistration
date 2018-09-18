@@ -3,9 +3,7 @@ package com.one.app.demo.registration.registration.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,15 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.one.app.demo.registration.R;
 import com.one.app.demo.registration.registration.controller.RegistrationController;
 
-import java.text.ParseException;
-
 public class YourAddressFragment extends Fragment implements
-        YourAddressFragmentPresenter.YourAddressFragmentPresenterView, View.OnFocusChangeListener  {
+        YourAddressFragmentPresenter.YourAddressFragmentPresenterView, View.OnFocusChangeListener {
 
     public static final String FRAGMENT_TAG = YourAddressFragment.class.getSimpleName();
     private FragmentActivity mActivity;
@@ -37,6 +32,8 @@ public class YourAddressFragment extends Fragment implements
     private EditText mAddressLine2EditText;
     private EditText mAddressLine3EditText;
     private EditText mPostlCodeEditText;
+    private final String mRegexStr = ".*\\d+.*";
+    private final String mRegexName = "[a-zA-Z]+";
 
     public YourAddressFragment() {
         // Required empty public constructor
@@ -83,7 +80,7 @@ public class YourAddressFragment extends Fragment implements
         setOnFocusChangeListener();
     }
 
-    private void setOnFocusChangeListener(){
+    private void setOnFocusChangeListener() {
         mAddressLine1EditText.setOnFocusChangeListener(this);
         mCityEditText.setOnFocusChangeListener(this);
         mStateEditText.setOnFocusChangeListener(this);
@@ -105,9 +102,17 @@ public class YourAddressFragment extends Fragment implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.next) {
-            return validateInput();
-
-        } else return super.onOptionsItemSelected(item);
+            if (mNextButton.isEnabled()) {
+                //try {
+                if (validateInput())
+                    getController().showDeclarationFragment();
+                //} catch (ParseException e) {
+                //   e.printStackTrace();
+                //}
+                return super.onOptionsItemSelected(item);
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -116,23 +121,31 @@ public class YourAddressFragment extends Fragment implements
     }
 
     private boolean validateInput() {
-        if (TextUtils.isEmpty(mAddressLine1EditText.getText().toString())) {
-            mAddressLine1EditText.setError(getResources().getString(R.string.address_line1_error_msg));
+        if (mCityEditText.getText().toString().matches(mRegexName) &&
+                mStateEditText.getText().toString().matches(mRegexName) &&
+                mCountryEditText.getText().toString().matches(mRegexName)) {
+            return true;
+        } else {
+            if (TextUtils.isEmpty(mAddressLine1EditText.getText().toString())) {
+                mAddressLine1EditText.setError(getResources().getString(R.string.address_line1_error_msg));
+            }
+            if (TextUtils.isEmpty(mCityEditText.getText().toString())) {
+                mCityEditText.setError(getResources().getString(R.string.city_error_msg));
+            } else if (mCityEditText.getText().toString().matches(mRegexStr)) {
+                mCityEditText.setError(getResources().getString(R.string.numeric_string));
+            }
+            if (TextUtils.isEmpty(mStateEditText.getText().toString())) {
+                mStateEditText.setError(getResources().getString(R.string.state_error_msg));
+            } else if (mStateEditText.getText().toString().matches(mRegexStr)) {
+                mStateEditText.setError(getResources().getString(R.string.numeric_string));
+            }
+            if (TextUtils.isEmpty(mCountryEditText.getText().toString())) {
+                mCountryEditText.setError(getResources().getString(R.string.country_error_msg));
+            } else if (mCountryEditText.getText().toString().matches(mRegexStr)) {
+                mCountryEditText.setError(getResources().getString(R.string.numeric_string));
+            }
             return false;
         }
-        if (TextUtils.isEmpty(mCityEditText.getText().toString())) {
-            mCityEditText.setError(getResources().getString(R.string.city_error_msg));
-            return false;
-        }
-        if (TextUtils.isEmpty(mStateEditText.getText().toString())) {
-            mStateEditText.setError(getResources().getString(R.string.state_error_msg));
-            return false;
-        }
-        if (TextUtils.isEmpty(mCountryEditText.getText().toString())) {
-            mCountryEditText.setError(getResources().getString(R.string.country_error_msg));
-            return false;
-        }
-        return true;
     }
 
     public interface YourAddressFragmentView {

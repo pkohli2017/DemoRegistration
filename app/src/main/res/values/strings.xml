@@ -41,12 +41,12 @@
 
     <!-- Your address Fragment -->
     <string name="enter_address_text">Please enter your address</string>
-    <string name="address_line1">Address line 1</string>
+    <string name="address_line1">Address line 1 *</string>
     <string name="address_line2">Address line 2</string>
     <string name="address_line3">Address line 3</string>
-    <string name="country">Country</string>
-    <string name="state">State</string>
-    <string name="city">City</string>
+    <string name="country">Country *</string>
+    <string name="state">State *</string>
+    <string name="city">City *</string>
     <string name="postal_code">Postal Code</string>
     <string name="blank">""</string>
     <string name="country_error_msg">Country should not be empty</string>

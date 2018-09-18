@@ -167,7 +167,7 @@ public class PersonalDetailsFragment extends Fragment implements
             if (mNextButton.isEnabled()) {
                 try {
                     if (doValidation())
-                        getController().showTermsAndConditionsFragment();
+                        getController().showYourAddressFragment();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
