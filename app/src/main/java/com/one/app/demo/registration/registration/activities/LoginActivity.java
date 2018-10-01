@@ -2,16 +2,19 @@ package com.one.app.demo.registration.registration.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.one.app.demo.registration.R;
-import com.one.app.demo.registration.registration.LoginPresentator.LoginPresenter;
+import com.one.app.demo.registration.registration.activities.presenter.LoginPresenter;
 
 public class LoginActivity extends AppCompatActivity
         implements LoginPresenter.LoginPresenterView, View.OnClickListener {
+    private static final String TAG = LoginActivity.class.getSimpleName();
     private LoginPresenter mLoginPresenter;
     private EditText mPasscodeEditText;
     private TextView mSignInButton;
@@ -34,30 +37,34 @@ public class LoginActivity extends AppCompatActivity
         mPasscodeEditText.setText("");
     }
 
-    public void showLoginError() {
-        Toast.makeText(getApplicationContext(), getString(R.string.loginError), Toast.LENGTH_SHORT).show();
-        clearPasscodeText();
-    }
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        String mPasscodeEditTextString = mPasscodeEditText.getText().toString();
-
         switch (id) {
             case R.id.txt_sign_in:
-                if (mPasscodeEditTextString.isEmpty() || mPasscodeEditTextString.length() > 3) {
-                    if (mLoginPresenter.checkPasscode(mPasscodeEditTextString))
-                        mPasscodeEditText.setError(getString(R.string.login_successful));
-                    else
-                        showLoginError();
-                } else
-                    showEmptyError();
+                String mPasscodeEditTextString = mPasscodeEditText.getText().toString();
+                if (!TextUtils.isEmpty(mPasscodeEditTextString) && mPasscodeEditTextString.length() == 6) {
+                    try {
+                        int passcode = Integer.parseInt(mPasscodeEditTextString);
+                        boolean isValidPasscode = mLoginPresenter.checkPasscode(passcode);
+                        if (isValidPasscode) {
+                            Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show();
+                        } else {
+                            showLoginError(R.string.loginError);
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, e.getMessage());
+                        Toast.makeText(this, getString(R.string.passcode_empty_error), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    showLoginError(R.string.passcode_empty_error);
+                }
                 break;
         }
     }
 
-    private void showEmptyError() {
-        Toast.makeText(getApplicationContext(), getString(R.string.passcode_empty_error), Toast.LENGTH_SHORT).show();
+    private void showLoginError(int stringId) {
+        mPasscodeEditText.setError(getString(stringId));
+        clearPasscodeText();
     }
 }

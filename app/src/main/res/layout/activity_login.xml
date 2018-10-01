@@ -26,7 +26,7 @@
             android:backgroundTint="@android:color/darker_gray"
             android:gravity="center"
             android:hint="@string/login_hint"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="6"
             android:maxLines="1"
             android:padding="@dimen/spacing_medium_x" />

@@ -59,7 +59,7 @@
     <string name="login_hint">Enter your X digit passcode</string>
     <string name="btn_sign_in_caption">SIGN IN</string>
     <string name="loginError">Please enter passcode again!</string>
-    <string name="passcode_empty_error">Please enter Passcode</string>
+    <string name="passcode_empty_error">Please enter 6 digit Passcode</string>
     <string name="sign_in">SIGN IN</string>
     <string name="login_successful">You have made successful Login</string>
 
